@@ -1,0 +1,11 @@
+<interface type='ethernet' name='calic0a8fe0a'>
+    <start mode='onboot'/>
+    <protocol family='ipv4'>
+        <ip address='192.168.25.10' prefix='24'/>
+        <route gateway='192.168.25.1'/>
+    </protocol>
+    <protocol family='ipv6'>
+        <autoconf/>
+    </protocol>
+    <alias name='eth0'/>
+</interface>

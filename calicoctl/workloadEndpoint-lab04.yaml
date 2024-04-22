@@ -1,0 +1,18 @@
+apiVersion: projectcalico.org/v3
+kind: WorkloadEndpoint
+metadata:
+  labels:
+    node: lab04
+  name: lab04-atao-vm01-calic0a8fe0a
+  namespace: default
+spec:
+  workload: vm01
+  endpoint: calic0a8fe0a
+  node: lab04
+  orchestrator: atao
+  ipNetworks:
+    - 192.168.25.10/32
+  interfaceName: calic0a8fe0a
+  mac: fe:54:00:f3:65:8e
+  profiles:
+    - wide-open

@@ -1,0 +1,17 @@
+- apiVersion: projectcalico.org/v3
+  kind: Profile
+  metadata:
+    name: wide-open
+  spec:
+    egress:
+      - action: Allow
+        destination:
+          nets: [0.0.0.0/0]
+        ipVersion: 4
+        source: {}
+    ingress:
+      - action: Allow
+        destination: {}
+        ipVersion: 4
+        source:
+          nets: [0.0.0.0/0]
