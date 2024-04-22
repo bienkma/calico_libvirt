@@ -17,7 +17,7 @@ calico libvirt
 </table>
 
 # Setup
-* Install Cumulus Quagga packages on router node
+* Install Cumulus Quagga packages on lab06
 ```bash
 ! /etc/quagga/bgpd.conf
 !
@@ -135,4 +135,26 @@ ip link set dev calic0a8fe0a up
   </protocol>
   <alias name='eth0'/>
 </interface>
+```
+* setup workloadEndpoint, policy and ippool
+```azure
+calicoctl apply -f pool1.yaml
+calicoctl apply -f calicoctl/wide-open.yaml
+calicoctl apply -f calicoctl/workloadEndpoint-lab04.yaml
+calicoctl apply -f calicoctl/workloadEndpoint-lab05.yaml
+```
+
+* setup libvirt on both lab04 and lab05
+```azure
+virt-install --name vm01 \
+--os-type linux \
+--os-variant ubuntu20.04 \
+--ram 1024 \
+--disk /kvm/disk/sr04.img,device=disk,bus=virtio,size=10,format=qcow2 \
+--noautoconsole \
+--graphics vnc,listen=10.110.68.116 \
+--hvm \
+--cdrom /kvm/iso/ubuntu-22.04.2-live-server-amd64.iso \
+--boot cdrom,hd \
+--network network=calic0a8fe0a
 ```
